@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= data.brand.name %> | Premier Investment & Luxury Brokerage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#061426',
+                            slate: '#0F2744',
+                            gold: '#D4AF37',
+                            goldHover: '#B89628',
+                            lightBg: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 text-slate-800 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
+
+    <div class="bg-brand-navy text-slate-300 text-xs py-2.5 px-6 border-b border-white/10 hidden md:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center gap-1.5"><i data-lucide="phone-call" class="w-3.5 h-3.5 text-brand-gold"></i> Direct: <%= data.brand.phone %></span>
+                <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5 text-brand-gold"></i> <%= data.brand.email %></span>
+                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-gold"></i> <%= data.brand.hours %></span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800/50">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> LDA/Govt Verified Agency
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-brand-navy flex items-center justify-center shadow-lg border border-brand-gold/40 group-hover:border-brand-gold transition duration-300">
+                    <svg class="w-6 h-6 text-brand-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18"/>
+                        <path d="M19 21v-4"/>
+                        <path d="M19 17l-7-7-7 7"/>
+                        <path d="M9 21v-7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v7"/>
+                        <path d="M12 3l8 8"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-tight text-brand-navy block leading-tight">SYED</span>
+                    <span class="text-[10px] tracking-[0.25em] font-bold text-brand-gold uppercase">Real Estate</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-700">
+                <a href="#properties" class="hover:text-brand-gold transition">Featured Listings</a>
+                <a href="#society-promo" class="text-brand-navy font-semibold hover:text-brand-gold flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> Society Mega Deal
+                </a>
+                <a href="#closed-deals" class="hover:text-brand-gold transition">Successful Deals</a>
+                <a href="#calculator" class="hover:text-brand-gold transition">ROI Calculator</a>
+                <a href="#reviews" class="hover:text-brand-gold transition">Client Reviews</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/923001234567" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-sm">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Us
+                </a>
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-brand-navy hover:bg-brand-slate text-white text-xs font-bold transition shadow-sm border border-transparent hover:border-brand-gold">
+                    Book Consultation
+                </a>
+            </div>
+        </div>
+    </header>

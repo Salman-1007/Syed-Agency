@@ -1,0 +1,381 @@
+<%- include('partials/header') %>
+
+    <section class="relative bg-brand-navy py-24 lg:py-36 overflow-hidden text-white">
+        <div class="absolute inset-0 opacity-25">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80" alt="Syed Real Estate" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-transparent"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/40 text-brand-gold text-xs font-bold uppercase tracking-wider mb-6">
+                    <i data-lucide="badge-check" class="w-4 h-4"></i> #1 Ranked Investment Agency & Advisory
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1]">
+                    Buy, Sell & Invest with Complete Legal Confidence.
+                </h1>
+                <p class="mt-6 text-lg text-slate-300 leading-relaxed font-normal max-w-2xl">
+                    Direct authorized partner for premier housing societies. 100% verified documentation, high-yield off-market assets, and guaranteed closing timelines.
+                </p>
+            </div>
+
+            <div class="mt-12 bg-white rounded-2xl p-4 sm:p-6 shadow-2xl border border-gray-100 max-w-5xl text-slate-800">
+                <form class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" onsubmit="event.preventDefault(); alert('Filtering listings...');">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Looking For</label>
+                        <select class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2.5 text-sm font-semibold focus:outline-none focus:border-brand-gold">
+                        <option>Buy Residential Home</option>
+                        <option>Commercial Plot / Plaza</option>
+                        <option>Society Plot Booking</option>
+                    </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Location / Society</label>
+                        <input type="text" placeholder="e.g. Park View, DHA Phase 6" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-brand-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Budget Range</label>
+                        <select class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2.5 text-sm font-semibold focus:outline-none focus:border-brand-gold">
+                        <option>Any Budget</option>
+                        <option>$100k - $300k</option>
+                        <option>$300k - $750k</option>
+                        <option>$750k+</option>
+                    </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button type="submit" class="w-full bg-brand-gold hover:bg-brand-goldHover text-brand-navy font-bold py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition shadow-md">
+                        <i data-lucide="search" class="w-4 h-4"></i> Search Listings
+                    </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="society-promo" class="py-24 bg-brand-lightBg border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-gradient-to-br from-brand-navy to-brand-slate rounded-3xl p-8 lg:p-14 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-12 -top-12 w-44 h-44 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-bold uppercase tracking-widest mb-4">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> <%= data.featuredSociety.badge %>
+                    </span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+                            <%= data.featuredSociety.name %>
+                        </h2>
+                        <p class="mt-4 text-slate-300 text-lg">
+                            <%= data.featuredSociety.tagline %>
+                        </p>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/10">
+                            <% data.featuredSociety.stats.forEach(stat => { %>
+                                <div>
+                                    <span class="block text-2xl font-black text-brand-gold"><%= stat.value %></span>
+                                    <span class="text-xs text-slate-400 font-medium"><%= stat.label %></span>
+                                </div>
+                                <% }) %>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                            <% data.featuredSociety.perks.forEach(perk => { %>
+                                <div class="flex items-start gap-3.5">
+                                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-brand-gold flex-shrink-0">
+                                        <i data-lucide="<%= perk.icon %>" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">
+                                            <%= perk.title %>
+                                        </h4>
+                                        <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                                            <%= perk.desc %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+
+                        <div class="mt-10 flex flex-wrap gap-4">
+                            <a href="#contact" class="px-6 py-3.5 rounded-xl bg-brand-gold text-brand-navy font-extrabold hover:bg-brand-goldHover transition shadow-lg flex items-center gap-2">
+                                <i data-lucide="file-down" class="w-4 h-4"></i> Download Society Payment Plan
+                            </a>
+                            <a href="https://wa.me/923001234567" target="_blank" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition flex items-center gap-2">
+                                <i data-lucide="calendar" class="w-4 h-4"></i> Schedule On-Site Visit
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 relative">
+                        <div class="rounded-2xl overflow-hidden border-2 border-brand-gold/30 shadow-2xl">
+                            <img src="<%= data.featuredSociety.heroImage %>" alt="Society Masterplan" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 left-6 right-6 bg-white p-4 rounded-xl shadow-xl text-slate-900 flex items-center justify-between border border-gray-100">
+                            <div>
+                                <span class="text-xs text-slate-500 font-bold uppercase">Limited Inventory</span>
+                                <h5 class="text-sm font-extrabold text-brand-navy">5, 10 Marla & 1 Kanal Plots Available</h5>
+                            </div>
+                            <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg animate-pulse">Fast Selling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="properties" class="py-24 max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Curated Portfolio</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-brand-navy mt-1">Available Premium Properties</h2>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
+                <button onclick="filterProps('all')" class="filter-tab px-4 py-2 rounded-lg text-xs font-bold bg-brand-navy text-white transition">All Units</button>
+                <button onclick="filterProps('residential')" class="filter-tab px-4 py-2 rounded-lg text-xs font-bold bg-white border border-gray-200 text-slate-600 hover:bg-gray-50 transition">Residential</button>
+                <button onclick="filterProps('commercial')" class="filter-tab px-4 py-2 rounded-lg text-xs font-bold bg-white border border-gray-200 text-slate-600 hover:bg-gray-50 transition">Commercial</button>
+                <button onclick="filterProps('luxury')" class="filter-tab px-4 py-2 rounded-lg text-xs font-bold bg-white border border-gray-200 text-slate-600 hover:bg-gray-50 transition">Luxury Villas</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <% data.properties.forEach(prop => { %>
+                <article class="prop-card <%= prop.type %> group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[4/3] overflow-hidden">
+                            <img src="<%= prop.image %>" alt="<%= prop.title %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-brand-navy/90 text-brand-gold text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm"><%= prop.badge %></span>
+                            <span class="absolute bottom-3 right-3 bg-white/95 text-brand-navy text-base font-black px-2.5 py-1 rounded-lg shadow"><%= prop.price %></span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-base font-extrabold text-brand-navy group-hover:text-brand-gold transition">
+                                <%= prop.title %>
+                            </h3>
+                            <p class="text-slate-500 text-xs flex items-center gap-1 mt-1 mb-4">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+                                <%= prop.location %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-slate-500 mb-4">
+                            <% if (prop.beds > 0) { %>
+                                <span class="flex items-center gap-1"><i data-lucide="bed-double" class="w-3.5 h-3.5"></i> <%= prop.beds %> Beds</span>
+                                <% } %>
+                                    <span class="flex items-center gap-1"><i data-lucide="bath" class="w-3.5 h-3.5"></i> <%= prop.baths %> Baths</span>
+                                    <span class="flex items-center gap-1"><i data-lucide="square" class="w-3.5 h-3.5"></i> <%= prop.area %></span>
+                        </div>
+                        <button onclick="openModal('<%= prop.title %>', '<%= prop.price %>')" class="w-full py-2.5 rounded-lg bg-gray-100 hover:bg-brand-navy hover:text-white font-bold text-xs text-brand-navy transition flex items-center justify-center gap-1.5">
+                        <i data-lucide="eye" class="w-3.5 h-3.5"></i> View Details & Plan
+                    </button>
+                    </div>
+                </article>
+                <% }) %>
+        </div>
+    </section>
+
+    <section id="closed-deals" class="py-24 bg-brand-navy text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Proven Track Record</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-1">Recent Multi-Million Deals Closed</h2>
+                <p class="text-slate-400 text-sm mt-3">We do not just list properties; we execute smooth transactions with vetted institutional and private capital.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <% data.closedDeals.forEach(deal => { %>
+                    <div class="bg-brand-slate rounded-2xl overflow-hidden border border-white/10 hover:border-brand-gold/40 transition flex flex-col justify-between">
+                        <div class="relative h-48">
+                            <img src="<%= deal.image %>" alt="<%= deal.title %>" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-slate via-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase"><i data-lucide="check" class="w-3 h-3 inline mr-1"></i> Closed & Transferred</span>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs text-brand-gold font-bold uppercase tracking-wider"><%= deal.type %></span>
+                            <h4 class="text-xl font-bold text-white mt-1">
+                                <%= deal.title %>
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-white/10 text-xs">
+                                <div>
+                                    <span class="text-slate-400 block">Transaction Value</span>
+                                    <span class="font-extrabold text-white text-base"><%= deal.volume %></span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-400 block">Execution Metric</span>
+                                    <span class="font-extrabold text-brand-gold text-base"><%= deal.turnaround %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="py-20 bg-slate-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-200">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Investor Utility</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mt-1">Plot & Property Installment Estimator</h3>
+                    <p class="text-slate-500 text-xs mt-1">Estimate your quarterly payments and capital growth forecast.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Total Property Price ($)</label>
+                            <input id="calcPrice" type="number" value="100000" class="w-full p-3 rounded-lg border border-gray-200 text-sm font-semibold focus:outline-none focus:border-brand-navy">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Down Payment (%)</label>
+                            <input id="calcDown" type="range" min="10" max="50" value="20" class="w-full accent-brand-navy" oninput="updateDownLabel(this.value)">
+                            <span id="downLabel" class="text-xs font-bold text-slate-700">20% Down Payment</span>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Payment Plan Duration</label>
+                            <select id="calcYears" class="w-full p-3 rounded-lg border border-gray-200 text-sm font-semibold focus:outline-none focus:border-brand-navy">
+                            <option value="1">1 Year (4 Quarterly Installments)</option>
+                            <option value="2">2 Years (8 Quarterly Installments)</option>
+                            <option value="3" selected>3 Years (12 Quarterly Installments)</option>
+                        </select>
+                        </div>
+                        <button onclick="calculatePlan()" class="w-full py-3 bg-brand-navy text-white rounded-lg font-bold text-sm hover:bg-brand-slate transition">Calculate Breakdown</button>
+                    </div>
+
+                    <div class="bg-brand-lightBg p-6 rounded-2xl border border-gray-200/80">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">Estimated Payment Schedule</h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Initial Down Payment:</span>
+                                <span id="resDown" class="font-extrabold text-brand-navy">$20,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Quarterly Installment:</span>
+                                <span id="resQuarterly" class="font-extrabold text-emerald-700">$6,666 / qtr</span>
+                            </div>
+                            <div class="flex justify-between pt-3 border-t border-gray-200">
+                                <span class="text-slate-600 font-bold">Estimated 3-Yr Value:</span>
+                                <span id="resGrowth" class="font-black text-brand-gold text-lg">$140,000 (+40%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-24 max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-xl mx-auto mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Real Experiences</span>
+            <h2 class="text-3xl font-extrabold text-brand-navy mt-1">What Our Clients Say</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <% data.reviews.forEach(review => { %>
+                <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <% for(let i=0; i<review.stars; i++) { %>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <% } %>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed italic mb-6">"
+                            <%= review.comment %>"</p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                        <img src="<%= review.image %>" alt="<%= review.name %>" class="w-12 h-12 rounded-full object-cover border border-brand-gold">
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-sm">
+                                <%= review.name %>
+                            </h4>
+                            <p class="text-xs text-slate-500">
+                                <%= review.role %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-brand-navy text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-black mt-2 leading-tight">
+                        Looking to Buy, Sell, or Partner? Let’s Talk.
+                    </h2>
+                    <p class="mt-4 text-slate-300 text-sm leading-relaxed">
+                        Leave your contact details and one of our dedicated property advisors will reach out with exclusive floor plans, inventory lists, and price sheets.
+                    </p>
+                    <div class="mt-8 space-y-4 text-sm text-slate-300">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand-gold"></i>
+                            <%= data.brand.phone %>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand-gold"></i>
+                            <%= data.brand.email %>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-gold"></i>
+                            <%= data.brand.address %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white text-slate-800 p-8 rounded-3xl shadow-2xl">
+                    <form id="leadForm" onsubmit="submitLead(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Full Name</label>
+                                <input name="name" type="text" required placeholder="Ali Syed" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-brand-navy">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Phone (with WhatsApp)</label>
+                                <input name="phone" type="tel" required placeholder="+92 300 0000000" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-brand-navy">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Interested In</label>
+                            <select name="interest" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-brand-navy bg-white">
+                            <option>Park View Enclave (New Bookings)</option>
+                            <option>Commercial Plaza Investment</option>
+                            <option>Selling My Existing Property</option>
+                            <option>Free Portfolio Valuation</option>
+                        </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Special Requirements / Message</label>
+                            <textarea name="message" rows="3" placeholder="Tell us about your budget or target location..." class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-brand-navy"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-navy font-black rounded-lg transition shadow-md">
+                        Request VIP Investor Call Back
+                    </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="propModal" class="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-gold">Property Brief</span>
+            <h3 id="modalTitle" class="text-xl font-bold text-brand-navy mt-1"></h3>
+            <p id="modalPrice" class="text-lg font-black text-emerald-700 mt-1"></p>
+            <p class="text-slate-600 text-xs mt-3 leading-relaxed">
+                Full layout plan, ownership documents, and payment schedule are available. Contact our direct desk to schedule a private tour.
+            </p>
+            <div class="mt-6 flex gap-3">
+                <a href="https://wa.me/923001234567" target="_blank" class="flex-1 py-2.5 bg-emerald-600 text-white rounded-lg text-xs font-bold text-center">Inquire via WhatsApp</a>
+                <button onclick="closeModal()" class="flex-1 py-2.5 bg-gray-100 text-slate-700 rounded-lg text-xs font-bold">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>

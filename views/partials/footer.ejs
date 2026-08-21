@@ -1,0 +1,128 @@
+<footer class="bg-brand-navy text-gray-400 text-sm border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div class="md:col-span-1">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-brand-navy border border-brand-gold/40 flex items-center justify-center">
+                    <span class="text-brand-gold font-black text-sm">S</span>
+                </div>
+                <span class="text-lg font-bold text-white tracking-wider"><%= data.brand.name %></span>
+            </div>
+            <p class="text-xs text-gray-400 leading-relaxed">
+                Trusted real estate advisory specializing in prime residential plots, corporate hubs, and authorized housing scheme developments.
+            </p>
+        </div>
+
+        <div>
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Core Services</h4>
+            <ul class="space-y-2 text-xs">
+                <li><a href="#properties" class="hover:text-white transition">Plot Purchasing & Files</a></li>
+                <li><a href="#society-promo" class="hover:text-white transition">Housing Scheme Bookings</a></li>
+                <li><a href="#closed-deals" class="hover:text-white transition">Commercial Liquidation</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Official Schemes</h4>
+            <ul class="space-y-2 text-xs">
+                <li><a href="#society-promo" class="hover:text-white transition">Park View Enclave Elite</a></li>
+                <li><a href="#properties" class="hover:text-white transition">DHA Phase 6 & 8 Projects</a></li>
+                <li><a href="#properties" class="hover:text-white transition">Bahria Executive Penthouses</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Corporate Office</h4>
+            <p class="text-xs leading-relaxed text-gray-300 mb-2">
+                <%= data.brand.address %>
+            </p>
+            <p class="text-xs text-brand-gold font-bold">
+                <%= data.brand.phone %>
+            </p>
+        </div>
+    </div>
+
+    <div class="border-t border-white/5 py-6 px-6 text-center text-xs text-gray-500">
+        © 2026 Syed Real Estate Agency. All rights reserved. Registered Real Estate Brokerage.
+    </div>
+</footer>
+
+<script>
+    lucide.createIcons();
+
+    // 1. Property Filtering Logic
+    function filterProps(category) {
+        const cards = document.querySelectorAll('.prop-card');
+        const buttons = document.querySelectorAll('.filter-tab');
+
+        buttons.forEach(btn => {
+            btn.className = 'filter-tab px-4 py-2 rounded-lg text-xs font-bold bg-white border border-gray-200 text-slate-600 hover:bg-gray-50 transition';
+        });
+        event.target.className = 'filter-tab px-4 py-2 rounded-lg text-xs font-bold bg-brand-navy text-white transition';
+
+        cards.forEach(card => {
+            if (category === 'all' || card.classList.contains(category)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // 2. Interactive Calculator Logic
+    function updateDownLabel(val) {
+        document.getElementById('downLabel').innerText = val + "% Down Payment";
+    }
+
+    function calculatePlan() {
+        const price = parseFloat(document.getElementById('calcPrice').value) || 0;
+        const downPct = parseFloat(document.getElementById('calcDown').value) || 20;
+        const years = parseInt(document.getElementById('calcYears').value) || 3;
+
+        const downAmount = price * (downPct / 100);
+        const remaining = price - downAmount;
+        const totalQuarters = years * 4;
+        const quarterly = remaining / totalQuarters;
+        const projectedValue = price * 1.40;
+
+        document.getElementById('resDown').innerText = "$" + downAmount.toLocaleString();
+        document.getElementById('resQuarterly').innerText = "$" + Math.round(quarterly).toLocaleString() + " / qtr";
+        document.getElementById('resGrowth').innerText = "$" + Math.round(projectedValue).toLocaleString() + " (+40%)";
+    }
+
+    // 3. Modal Details
+    function openModal(title, price) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('propModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('propModal').classList.add('hidden');
+    }
+
+    // 4. Inbound Lead Handling
+    async function submitLead(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const res = await fetch('/api/inquire', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            alert(result.message);
+            form.reset();
+        } catch (err) {
+            alert("Request registered! An agent will call you shortly.");
+        }
+    }
+</script>
+</body>
+
+</html>
