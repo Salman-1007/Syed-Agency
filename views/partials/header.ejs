@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>
         <%= data.brand.name %> | Premier Investment & Luxury Brokerage</title>
+    <!-- Tailwind CSS with custom branding config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,11 +25,13 @@
             }
         }
     </script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-gray-50 text-slate-800 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
+<body class="bg-gray-50 text-slate-800 font-sans antialiased selection:bg-amber-100 selection:text-amber-900 pb-20 md:pb-0">
 
+    <!-- Top Announcement & Direct Contact Bar (Desktop Only) -->
     <div class="bg-brand-navy text-slate-300 text-xs py-2.5 px-6 border-b border-white/10 hidden md:block">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-6">
@@ -44,11 +47,13 @@
         </div>
     </div>
 
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-xl bg-brand-navy flex items-center justify-center shadow-lg border border-brand-gold/40 group-hover:border-brand-gold transition duration-300">
-                    <svg class="w-6 h-6 text-brand-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="/" class="flex items-center gap-2.5 sm:gap-3 group">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-brand-navy flex items-center justify-center shadow-lg border border-brand-gold/40 group-hover:border-brand-gold transition duration-300">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 21h18"/>
                         <path d="M19 21v-4"/>
                         <path d="M19 17l-7-7-7 7"/>
@@ -57,11 +62,12 @@
                     </svg>
                 </div>
                 <div>
-                    <span class="text-xl font-black tracking-tight text-brand-navy block leading-tight">SYED</span>
-                    <span class="text-[10px] tracking-[0.25em] font-bold text-brand-gold uppercase">Real Estate</span>
+                    <span class="text-lg sm:text-xl font-black tracking-tight text-brand-navy block leading-tight">SYED</span>
+                    <span class="text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-brand-gold uppercase">Real Estate</span>
                 </div>
             </a>
 
+            <!-- Desktop Nav Links -->
             <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-700">
                 <a href="#properties" class="hover:text-brand-gold transition">Featured Listings</a>
                 <a href="#society-promo" class="text-brand-navy font-semibold hover:text-brand-gold flex items-center gap-1">
@@ -72,13 +78,79 @@
                 <a href="#reviews" class="hover:text-brand-gold transition">Client Reviews</a>
             </nav>
 
-            <div class="flex items-center gap-3">
+            <!-- Desktop CTA Actions -->
+            <div class="hidden sm:flex items-center gap-3">
                 <a href="https://wa.me/923001234567" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-sm">
                     <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Us
                 </a>
-                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-brand-navy hover:bg-brand-slate text-white text-xs font-bold transition shadow-sm border border-transparent hover:border-brand-gold">
+                <a href="#contact" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-brand-navy hover:bg-brand-slate text-white text-xs font-bold transition shadow-sm border border-transparent hover:border-brand-gold">
                     Book Consultation
                 </a>
             </div>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-brand-navy transition focus:outline-none" aria-label="Toggle Menu">
+                <i id="menuIcon" data-lucide="menu" class="w-6 h-6"></i>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Slide-over Drawer Backdrop -->
+    <div id="drawerBackdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-brand-navy/70 z-50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
+
+    <!-- Mobile Slide-over Drawer Panel -->
+    <aside id="drawerPanel" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white z-50 shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+
+        <!-- Drawer Header -->
+        <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-brand-navy flex items-center justify-center border border-brand-gold/40">
+                    <span class="text-brand-gold font-black text-sm">S</span>
+                </div>
+                <span class="font-extrabold text-brand-navy tracking-tight">SYED REAL ESTATE</span>
+            </div>
+            <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-slate-100 text-slate-500 hover:text-slate-800">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Navigation Links -->
+        <nav class="p-6 flex flex-col space-y-4 overflow-y-auto flex-1 text-sm font-bold text-slate-700">
+            <a href="#properties" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-800">
+                <span class="flex items-center gap-3"><i data-lucide="home" class="w-4 h-4 text-brand-gold"></i> Featured Listings</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+            </a>
+            <a href="#society-promo" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-xl bg-amber-50/60 border border-amber-200/60 text-brand-navy">
+                <span class="flex items-center gap-3">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-brand-gold"></i> 
+                    Park View Enclave
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-red-600 text-white font-extrabold">Hot Deal</span>
+            </a>
+            <a href="#closed-deals" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-800">
+                <span class="flex items-center gap-3"><i data-lucide="award" class="w-4 h-4 text-brand-gold"></i> Successful Deals</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+            </a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-800">
+                <span class="flex items-center gap-3"><i data-lucide="calculator" class="w-4 h-4 text-brand-gold"></i> Installment Estimator</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+            </a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-800">
+                <span class="flex items-center gap-3"><i data-lucide="star" class="w-4 h-4 text-brand-gold"></i> Verified Reviews</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+            </a>
+        </nav>
+
+        <!-- Drawer Footer Contact -->
+        <div class="p-6 border-t border-gray-100 bg-slate-50 space-y-3">
+            <a href="https://wa.me/923001234567" target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> Chat on WhatsApp
+            </a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="w-full py-3 rounded-xl bg-brand-navy hover:bg-brand-slate text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
+                <i data-lucide="calendar" class="w-4 h-4"></i> Book VIP Consultation
+            </a>
+            <p class="text-center text-[11px] text-slate-500 pt-2">
+                <%= data.brand.phone %>
+            </p>
+        </div>
+    </aside>

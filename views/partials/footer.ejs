@@ -1,3 +1,4 @@
+<!-- Desktop & Tablet Global Footer -->
 <footer class="bg-brand-navy text-gray-400 text-sm border-t border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div class="md:col-span-1">
@@ -46,10 +47,61 @@
     </div>
 </footer>
 
+<!-- App-Style Sticky Bottom Quick Actions Bar (Mobile Only) -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200 px-4 py-2.5 flex items-center justify-around shadow-2xl lg:hidden">
+    <a href="tel:+923001234567" class="flex flex-col items-center gap-1 text-slate-600 hover:text-brand-navy">
+        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
+            <i data-lucide="phone" class="w-4 h-4"></i>
+        </div>
+        <span class="text-[10px] font-bold">Call Now</span>
+    </a>
+
+    <a href="https://wa.me/923001234567" target="_blank" class="flex flex-col items-center gap-1 text-emerald-600 hover:text-emerald-700">
+        <div class="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+        </div>
+        <span class="text-[10px] font-bold">WhatsApp</span>
+    </a>
+
+    <a href="#society-promo" class="flex flex-col items-center gap-1 text-brand-gold hover:text-brand-goldHover relative">
+        <div class="w-8 h-8 rounded-full bg-brand-navy flex items-center justify-center text-brand-gold shadow-md">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+        </div>
+        <span class="text-[10px] font-bold text-brand-navy">Hot Deal</span>
+    </a>
+
+    <a href="#contact" class="flex flex-col items-center gap-1 text-slate-600 hover:text-brand-navy">
+        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
+            <i data-lucide="send" class="w-4 h-4"></i>
+        </div>
+        <span class="text-[10px] font-bold">Inquire</span>
+    </a>
+</div>
+
+<!-- Client-side Scripts -->
 <script>
     lucide.createIcons();
 
-    // 1. Property Filtering Logic
+    // 1. Mobile Menu Drawer Toggle
+    function toggleMobileMenu() {
+        const backdrop = document.getElementById('drawerBackdrop');
+        const drawer = document.getElementById('drawerPanel');
+
+        const isOpen = !drawer.classList.contains('translate-x-full');
+        if (isOpen) {
+            drawer.classList.add('translate-x-full');
+            backdrop.classList.add('opacity-0', 'pointer-events-none');
+            backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+            document.body.classList.remove('overflow-hidden');
+        } else {
+            drawer.classList.remove('translate-x-full');
+            backdrop.classList.remove('opacity-0', 'pointer-events-none');
+            backdrop.classList.add('opacity-100', 'pointer-events-auto');
+            document.body.classList.add('overflow-hidden');
+        }
+    }
+
+    // 2. Property Filtering Logic
     function filterProps(category) {
         const cards = document.querySelectorAll('.prop-card');
         const buttons = document.querySelectorAll('.filter-tab');
@@ -68,7 +120,7 @@
         });
     }
 
-    // 2. Interactive Calculator Logic
+    // 3. Interactive Calculator Logic
     function updateDownLabel(val) {
         document.getElementById('downLabel').innerText = val + "% Down Payment";
     }
@@ -89,7 +141,7 @@
         document.getElementById('resGrowth').innerText = "$" + Math.round(projectedValue).toLocaleString() + " (+40%)";
     }
 
-    // 3. Modal Details
+    // 4. Modal Details
     function openModal(title, price) {
         document.getElementById('modalTitle').innerText = title;
         document.getElementById('modalPrice').innerText = price;
@@ -100,7 +152,7 @@
         document.getElementById('propModal').classList.add('hidden');
     }
 
-    // 4. Inbound Lead Handling
+    // 5. Inbound Lead Handling
     async function submitLead(e) {
         e.preventDefault();
         const form = e.target;
